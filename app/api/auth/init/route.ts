@@ -13,10 +13,10 @@ export async function GET() {
         const hashedPassword = await bcrypt.hash("admin123", 10);
         await sql`
       INSERT INTO admins (name, email, password) 
-      VALUES ('Super Admin', 'admin@actorscharity.org', ${hashedPassword})
+      VALUES ('Super Admin', 'info@westafricancheerleading.org', ${hashedPassword})
     `;
 
-        return NextResponse.json({ message: "Admin created successfully. Login with admin@actorscharity.org / admin123" });
+        return NextResponse.json({ message: "Admin created successfully. Login with info@westafricancheerleading.org / admin123" });
     } catch (error) {
         console.error("Admin init error:", error);
         return NextResponse.json({ error: "Internal server error" }, { status: 500 });

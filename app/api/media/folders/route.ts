@@ -5,7 +5,7 @@ import { getSession } from '@/lib/auth';
 export async function GET(request: Request) {
     try {
         const { searchParams } = new URL(request.url);
-        const rootFolder = searchParams.get('root') || 'acf';
+        const rootFolder = searchParams.get('root') || 'waclg';
         const excludeSystem = searchParams.get('exclude_system') === 'true';
 
         // 1. Get folders gracefully
@@ -27,7 +27,7 @@ export async function GET(request: Request) {
 
         // Apply system exclusions for public gallery
         if (excludeSystem) {
-            const systemFolders = ['admins', 'events', 'profiles', 'slider', 'home', 'about'];
+            const systemFolders = ['admins', 'events', 'profiles', 'slider', 'sliders', 'home', 'about', 'wac/slider', 'wac/sliders'];
             filteredFolders = filteredFolders.filter((f: any) => 
                 !systemFolders.includes(f.name.toLowerCase())
             );
@@ -81,7 +81,7 @@ export async function POST(request: Request) {
         const { name, root } = await request.json();
         if (!name) return NextResponse.json({ error: 'Folder name is required' }, { status: 400 });
 
-        const basePath = root || 'acf';
+        const basePath = root || 'waclg';
         const path = `${basePath}/${name}`;
         const result = await cloudinary.api.create_folder(path);
 

@@ -29,7 +29,7 @@ export async function POST(request: Request) {
                     return new Promise<any>((resolve, reject) => {
                         cloudinary.uploader.upload_stream(
                             {
-                                folder: 'acf/posts',
+                                folder: 'waclg/posts',
                                 resource_type: 'auto'
                             },
                             (error, result) => {

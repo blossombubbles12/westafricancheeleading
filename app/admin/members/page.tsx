@@ -4,8 +4,8 @@ import { MembersListClient } from "@/components/admin/MembersListClient";
 export default function AdminMembersPage() {
     return (
         <AdminPageLayout
-            title="Alumni Members"
-            subtitle="Manage registered brothers and track community growth."
+            title="Members"
+            subtitle="Manage registered members and track community growth."
             activePage="members"
         >
             <MembersListClient />

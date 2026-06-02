@@ -8,9 +8,10 @@ export async function POST(request: Request) {
             full_name,
             email,
             phone,
-            role,      // New ACF field
+            category,  // membership category
+            role,      // occupation/profession
             location,
-            portfolio, // New ACF field
+            portfolio, // industry
             biography,
             photo_url
         } = body;
@@ -30,11 +31,12 @@ export async function POST(request: Request) {
                 full_name, 
                 email, 
                 phone, 
-                occupation, -- Map 'role' to occupation
+                occupation, 
                 location, 
                 photo_url, 
                 status, 
-                industry,   -- Map 'portfolio' to industry
+                industry,
+                cohort,
                 is_visible, 
                 biography
             )
@@ -47,6 +49,7 @@ export async function POST(request: Request) {
                 ${photo_url || null}, 
                 'active', 
                 ${portfolio || null}, 
+                ${category || null}, 
                 true, 
                 ${biography || null}
             )

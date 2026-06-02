@@ -11,7 +11,6 @@ export function VideoSection() {
     const { images: videos } = useCloudinaryPool('video', 1, 'video');
     const [isOpen, setIsOpen] = useState(false);
     
-    // Fallback to static video if none uploaded yet to 'video' folder
     const videoUrl = videos && videos.length > 0 && Array.isArray(videos) && !videos[0].includes('unsplash') 
         ? videos[0] 
         : "https://res.cloudinary.com/dtw0ajpwa/video/upload/q_auto/f_auto/v1775238046/WhatsApp_Video_2026-04-03_at_5.08.58_PM_n57tg8.mp4";
@@ -20,21 +19,18 @@ export function VideoSection() {
 
     return (
         <section className="py-8 md:py-16 bg-white overflow-hidden">
-            {/* Section Label */}
             <div className="max-w-6xl mx-auto px-4 mb-6 md:mb-10">
                 <div className="flex items-center gap-3">
                     <span className="h-px w-8 bg-accent" />
                     <span className="text-[10px] font-black uppercase tracking-[0.4em] text-accent">Official Teaser</span>
                 </div>
                 <h2 className="text-2xl md:text-4xl font-serif font-bold text-gray-900 mt-3 leading-tight">
-                    Actors Charity Foundation: <span className="text-primary italic font-light">Impact & Vision</span>
+                    WAC: <span className="text-primary italic font-light">Cheerleading Across West Africa</span>
                 </h2>
             </div>
 
-            {/* Video Container — full-width on mobile */}
             <div className="max-w-6xl mx-auto px-0 sm:px-4">
                 <div className="relative group">
-                    {/* Decorative blobs – hide on small screens */}
                     <div className="hidden md:block absolute -top-12 -left-12 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10 animate-pulse" />
                     <div className="hidden md:block absolute -bottom-12 -right-12 w-64 h-64 bg-accent/10 rounded-full blur-3xl -z-10 animate-pulse delay-700" />
 
@@ -45,19 +41,16 @@ export function VideoSection() {
                         transition={{ duration: 0.8 }}
                         className="relative w-full aspect-video rounded-none sm:rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-none sm:shadow-2xl border-0 sm:border border-gray-100"
                     >
-                        {/* Thumbnail */}
                         <Image
                             src={thumbnail}
-                            alt="ACF Video Teaser"
+                            alt="WAC Video Teaser"
                             fill
                             className="object-cover group-hover:scale-105 transition-transform duration-1000"
                             unoptimized
                         />
 
-                        {/* Dark Overlay */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/10" />
 
-                        {/* Play Button — centred */}
                         <div className="absolute inset-0 flex items-center justify-center">
                             <motion.button
                                 whileHover={{ scale: 1.1 }}
@@ -70,17 +63,15 @@ export function VideoSection() {
                             </motion.button>
                         </div>
 
-                        {/* Bottom-left label */}
                         <div className="absolute bottom-6 left-5 sm:bottom-10 sm:left-10 md:bottom-14 md:left-14 text-white">
                             <span className="inline-block px-3 py-1 bg-accent text-white text-[9px] sm:text-[10px] font-black uppercase tracking-[0.3em] rounded-full mb-3">
                                 Exclusive Teaser
                             </span>
                             <p className="text-base sm:text-xl md:text-3xl font-serif font-bold leading-snug drop-shadow-lg">
-                                Watch the Day 3 Highlights
+                                Watch the Highlights
                             </p>
                         </div>
 
-                        {/* Duration badge */}
                         <div className="absolute top-5 right-5 sm:top-8 sm:right-8 px-3 py-1.5 bg-black/50 backdrop-blur-sm rounded-full text-white text-[10px] font-bold tracking-wider">
                             ▶  FULL TEASER
                         </div>
@@ -88,7 +79,6 @@ export function VideoSection() {
                 </div>
             </div>
 
-            {/* Video Modal */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
@@ -98,7 +88,6 @@ export function VideoSection() {
                         className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex items-center justify-center p-2 sm:p-6 md:p-10"
                         onClick={() => setIsOpen(false)}
                     >
-                        {/* Close Button */}
                         <button
                             className="absolute top-4 right-4 md:top-8 md:right-8 w-11 h-11 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors z-50 border border-white/20"
                             onClick={(e) => { e.stopPropagation(); setIsOpen(false); }}

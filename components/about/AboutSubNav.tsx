@@ -5,17 +5,15 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 const ABOUT_NAV = [
-    { label: "Our Story", href: "/about" },
-    { label: "Board Members", href: "/about/board" },
-    { label: "Executive", href: "/about/board#executive" },
-    { label: "Director's Letter", href: "/about/board#directors-letter" },
+    { label: "Our Mission & Vision", href: "/about" },
+    { label: "Leadership", href: "/about/board" },
 ];
 
 export function AboutSubNav() {
     const pathname = usePathname();
 
     return (
-        <nav className="sticky top-[57px] z-40 bg-white border-b border-slate-100 shadow-sm">
+        <nav className="sticky top-[57px] z-40 bg-white border-b border-gray-100 shadow-sm">
             <div className="max-w-6xl mx-auto px-6">
                 <div className="flex items-center gap-1 overflow-x-auto scrollbar-none py-0">
                     {ABOUT_NAV.map((item) => {
@@ -29,8 +27,8 @@ export function AboutSubNav() {
                                 className={cn(
                                     "whitespace-nowrap px-4 py-3.5 text-[11px] font-black uppercase tracking-widest border-b-2 transition-all",
                                     isActive
-                                        ? "border-amber-500 text-amber-600"
-                                        : "border-transparent text-slate-500 hover:text-slate-800 hover:border-slate-300"
+                                        ? "border-[#096b38] text-[#096b38]"
+                                        : "border-transparent text-gray-500 hover:text-[#096b38] hover:border-gray-300"
                                 )}
                             >
                                 {item.label}

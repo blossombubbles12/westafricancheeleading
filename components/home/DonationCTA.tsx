@@ -7,11 +7,9 @@ import { Heart, ArrowRight, Shield, CheckCircle2 } from "lucide-react";
 export function DonationCTA() {
     return (
         <section className="py-16 md:py-20 bg-gradient-to-br from-amber-500 via-amber-500 to-amber-600 text-slate-950 relative overflow-hidden">
-            {/* Decorative elements */}
             <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute -top-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
                 <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-amber-600/30 rounded-full blur-3xl" />
-                {/* Dot grid pattern */}
                 <div className="absolute inset-0 opacity-10" style={{
                     backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)",
                     backgroundSize: "24px 24px",
@@ -31,8 +29,8 @@ export function DonationCTA() {
                         </div>
 
                         <h2 className="text-3xl md:text-5xl font-outfit font-bold leading-tight">
-                            Every Donation Writes a<br />
-                            <span className="italic font-medium">New Story of Hope</span>
+                            Support Cheerleading in<br />
+                            <span className="italic font-medium">West Africa</span>
                         </h2>
                     </motion.div>
 
@@ -43,7 +41,7 @@ export function DonationCTA() {
                         transition={{ delay: 0.1, duration: 0.5 }}
                         className="text-slate-900/70 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-medium"
                     >
-                        Join the growing network of change-makers who believe in the power of storytelling to transform lives. 100% of your donation goes directly to community impact programs.
+                        Your contribution helps develop athletes, train coaches, organize competitions, and build the future of cheerleading across 15 West African nations.
                     </motion.p>
 
                     <motion.div
@@ -57,7 +55,7 @@ export function DonationCTA() {
                             href="/donate"
                             className="px-10 py-4 bg-slate-950 text-white rounded-xl font-black uppercase tracking-widest text-[10px] hover:bg-slate-800 transition-all shadow-xl flex items-center gap-2 group"
                         >
-                            Donate Now <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            Support WAC <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </Link>
                         <Link
                             href="/contact"
@@ -76,8 +74,8 @@ export function DonationCTA() {
                     >
                         {[
                             { icon: Shield, text: "100% Transparent" },
-                            { icon: CheckCircle2, text: "CAC Registered" },
-                            { icon: Heart, text: "Tax Deductible" },
+                            { icon: CheckCircle2, text: "Youth-Focused" },
+                            { icon: Heart, text: "Regional Impact" },
                         ].map((item, i) => (
                             <div key={i} className="flex items-center gap-2 text-slate-900/60 text-xs font-bold">
                                 <item.icon className="w-4 h-4" />

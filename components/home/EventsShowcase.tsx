@@ -44,7 +44,7 @@ export function EventsShowcase() {
 
     return (
         <ShowcaseCarousel
-            title="ACF Events"
+            title="WAC Competitions & Events"
             subtitle="Mark Your Calendars"
             items={events}
             viewAllHref="/events"
@@ -87,4 +87,3 @@ export function EventsShowcase() {
         />
     );
 }
-

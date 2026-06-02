@@ -1,34 +1,14 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Events Calendar",
-    description:
-        "Stay updated on ACF humanitarian outreaches, fundraising galas, community health drives, and industry networking events across Nigeria.",
-    keywords: [
-        "ACF events",
-        "Nollywood charity events",
-        "Nigerian charity fundraiser",
-        "humanitarian outreach Nigeria",
-        "ACF calendar",
-        "entertainment philanthropy events",
-    ],
-    alternates: {
-        canonical: "/events",
-    },
-    openGraph: {
-        title: "Events Calendar | Actors Charity Foundation (ACF)",
-        description: "Official calendar of humanitarian and social impact events organized by Nollywood's finest actors and filmmakers.",
-        url: "/events",
-        images: [{ url: "/acflogo.png", width: 1200, height: 630, alt: "Actors Charity Foundation Events" }],
-    },
-    twitter: {
-        card: "summary_large_image",
-        title: "ACF Events | Actors Charity Foundation",
-        description: "Humanitarian outreaches, fundraisers, and more — mark your calendar.",
-        images: ["/acflogo.png"],
-    },
+  title: "Competitions & Events",
+  description: "Stay updated on WAC cheerleading competitions, championships, school festivals, coaching conferences, and community events across West Africa.",
+  keywords: ["WAC events", "cheerleading competitions West Africa", "West African cheerleading championship", "cheer events", "WAC calendar"],
+  alternates: { canonical: "/events" },
+  openGraph: { title: "Competitions & Events | West African Cheerleading", description: "Official calendar of cheerleading competitions, championships, and events organized by WAC.", url: "/events", images: [{ url: "/waclogo.png", width: 1200, height: 630, alt: "WAC Events" }] },
+  twitter: { card: "summary_large_image", title: "WAC Events | West African Cheerleading", description: "Competitions, championships, and cheerleading events across West Africa.", images: ["/waclogo.png"] },
 };
 
 export default function EventsLayout({ children }: { children: React.ReactNode }) {
-    return <>{children}</>;
+  return <>{children}</>;
 }

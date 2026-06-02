@@ -40,7 +40,6 @@ export default function AdminLayoutClient({
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const pathname = usePathname();
 
-    // Close mobile menu on route change
     useEffect(() => {
         setIsMobileMenuOpen(false);
     }, [pathname]);
@@ -61,8 +60,8 @@ export default function AdminLayoutClient({
                 <div className="flex items-center gap-4 mb-2">
                     <div className="relative w-12 h-12 flex-shrink-0">
                         <NextImage
-                            src="/acflogo.png"
-                            alt="ACF Logo"
+                            src="/waclogo.png"
+                            alt="WAC Logo"
                             fill
                             className="object-contain"
                             priority
@@ -70,7 +69,7 @@ export default function AdminLayoutClient({
                     </div>
                     <h2 className="text-2xl font-serif font-bold text-white tracking-tight">Admin Hub</h2>
                 </div>
-                <p className="text-[10px] uppercase font-black text-accent/60 tracking-[0.2em]">Actors Charity Foundation</p>
+                <p className="text-[10px] uppercase font-black text-[#fab708]/60 tracking-[0.2em]">West African Cheerleading</p>
             </div>
 
             <nav className="space-y-1.5 flex-grow">
@@ -81,11 +80,11 @@ export default function AdminLayoutClient({
                             key={item.id}
                             href={item.href}
                             className={`flex items-center gap-3 px-5 py-3.5 rounded-2xl text-sm font-bold transition-all duration-300 ${isActive
-                                ? "bg-white text-navy shadow-xl shadow-black/20 translate-x-1"
+                                ? "bg-white text-[#0a1628] shadow-xl shadow-black/20 translate-x-1"
                                 : "text-white/60 hover:text-white hover:bg-white/5"
                                 }`}
                         >
-                            <item.icon className={`w-5 h-5 ${isActive ? "text-accent" : ""}`} />
+                            <item.icon className={`w-5 h-5 ${isActive ? "text-[#fab708]" : ""}`} />
                             {item.name}
                         </Link>
                     );
@@ -117,13 +116,11 @@ export default function AdminLayoutClient({
     );
 
     return (
-        <div className="min-h-screen bg-slate-50 flex overflow-hidden">
-            {/* Desktop Sidebar */}
-            <aside className="w-72 bg-navy text-white p-6 hidden lg:flex flex-col border-r border-white/5 shadow-2xl shrink-0">
+        <div className="min-h-screen bg-gray-50 flex overflow-hidden">
+            <aside className="w-72 bg-[#0a1628] text-white p-6 hidden lg:flex flex-col border-r border-white/5 shadow-2xl shrink-0">
                 <SidebarContent />
             </aside>
 
-            {/* Mobile Sidebar Overlay */}
             <AnimatePresence>
                 {isMobileMenuOpen && (
                     <>
@@ -139,7 +136,7 @@ export default function AdminLayoutClient({
                             animate={{ x: 0 }}
                             exit={{ x: "-100%" }}
                             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                            className="fixed inset-y-0 left-0 w-80 bg-navy text-white p-6 z-50 lg:hidden shadow-2xl"
+                            className="fixed inset-y-0 left-0 w-80 bg-[#0a1628] text-white p-6 z-50 lg:hidden shadow-2xl"
                         >
                             <button
                                 onClick={() => setIsMobileMenuOpen(false)}
@@ -153,25 +150,23 @@ export default function AdminLayoutClient({
                 )}
             </AnimatePresence>
 
-            {/* Main Content Area */}
             <div className="flex-grow flex flex-col h-screen overflow-hidden">
-                {/* Top Mobile Header */}
                 <header className="lg:hidden h-20 bg-white border-b border-gray-100 flex items-center justify-between px-6 shrink-0 z-30">
                     <div className="flex items-center gap-4">
                         <div className="relative w-10 h-10 flex-shrink-0">
                             <NextImage
-                                src="/acflogo.png"
-                                alt="ACF Logo"
+                                src="/waclogo.png"
+                                alt="WAC Logo"
                                 fill
                                 className="object-contain"
                                 priority
                             />
                         </div>
-                        <span className="font-serif font-bold text-lg text-primary tracking-tight">Admin Hub</span>
+                        <span className="font-serif font-bold text-lg text-[#0a1628] tracking-tight">Admin Hub</span>
                     </div>
                     <button
                         onClick={() => setIsMobileMenuOpen(true)}
-                        className="p-3 bg-slate-50 rounded-2xl text-primary hover:bg-slate-100 transition-all border border-gray-100"
+                        className="p-3 bg-gray-50 rounded-2xl text-[#0a1628] hover:bg-gray-100 transition-all border border-gray-100"
                     >
                         <Menu className="w-6 h-6" />
                     </button>
@@ -179,33 +174,32 @@ export default function AdminLayoutClient({
 
                 <main className="flex-grow overflow-y-auto p-6 md:p-12 scroll-smooth">
                     <div className="max-w-7xl mx-auto">
-                        {/* Content Header */}
                         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 mb-12">
                             <div className="space-y-2">
                                 <Link
                                     href="/admin/dashboard"
-                                    className="inline-flex items-center gap-2 text-[10px] font-black text-accent uppercase tracking-[0.2em] hover:text-primary transition-colors bg-accent/5 px-3 py-1.5 rounded-full"
+                                    className="inline-flex items-center gap-2 text-[10px] font-black text-[#096b38] uppercase tracking-[0.2em] hover:text-[#07582e] transition-colors bg-[#096b38]/5 px-3 py-1.5 rounded-full"
                                 >
                                     <ChevronLeft className="w-3.5 h-3.5" /> Dashboard
                                 </Link>
-                                <h1 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 tracking-tight">{title}</h1>
+                                <h1 className="text-4xl md:text-5xl font-serif font-bold text-[#0a1628] tracking-tight">{title}</h1>
                                 {subtitle && <p className="text-gray-500 font-medium text-lg leading-relaxed">{subtitle}</p>}
                             </div>
 
                             <div className="flex items-center gap-4">
                                 <div className="hidden sm:flex items-center gap-2">
                                     <NotificationBell />
-                                    <button className="p-3 bg-white border border-gray-100 rounded-2xl text-gray-400 hover:text-primary hover:border-primary transition-all shadow-sm">
+                                    <button className="p-3 bg-white border border-gray-100 rounded-2xl text-gray-400 hover:text-[#096b38] hover:border-[#096b38] transition-all shadow-sm">
                                         <Settings className="w-5 h-5" />
                                     </button>
                                 </div>
                                 {actions}
                                 <div className="flex items-center gap-4 pl-4 border-l border-gray-200">
                                     <div className="text-right hidden sm:block">
-                                        <p className="text-sm font-bold text-gray-900 leading-none">{session?.user?.name || "Admin"}</p>
+                                        <p className="text-sm font-bold text-[#0a1628] leading-none">{session?.user?.name || "Admin"}</p>
                                         <p className="text-[10px] uppercase font-black text-gray-400 tracking-widest mt-1">Super Admin</p>
                                     </div>
-                                    <div className="h-14 w-14 bg-gradient-to-tr from-navy via-navy/80 to-primary text-white rounded-[1.5rem] flex items-center justify-center font-black text-xl shadow-2xl shadow-primary/20 border-2 border-white overflow-hidden relative">
+                                    <div className="h-14 w-14 bg-gradient-to-tr from-[#0a1628] via-[#0a1628]/80 to-[#096b38] text-white rounded-[1.5rem] flex items-center justify-center font-black text-xl shadow-2xl shadow-[#096b38]/20 border-2 border-white overflow-hidden relative">
                                         {session?.user?.avatar_url ? (
                                             <NextImage src={session.user.avatar_url} alt="Admin" fill className="object-cover" />
                                         ) : (
@@ -216,7 +210,6 @@ export default function AdminLayoutClient({
                             </div>
                         </div>
 
-                        {/* Page Content */}
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}

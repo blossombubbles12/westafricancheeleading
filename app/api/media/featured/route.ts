@@ -8,8 +8,8 @@ export async function GET(request: Request) {
         const type = searchParams.get('type') || 'image';
         
         const expression = folder 
-            ? `folder:acf/${folder}/* AND resource_type:${type}`
-            : `folder:acf/* AND resource_type:${type}`;
+            ? `folder:waclg/${folder}/* AND resource_type:${type}`
+            : `folder:waclg/* AND resource_type:${type}`;
 
         // Search for specific images
         const result = await cloudinary.search

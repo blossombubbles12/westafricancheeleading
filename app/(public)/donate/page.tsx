@@ -13,10 +13,10 @@ import { useCloudinaryPool } from "@/hooks/useCloudinaryPool";
 const PRESET_AMOUNTS = [1000, 5000, 10000, 25000, 50000, 100000];
 
 const IMPACT_TIERS = [
-    { amount: "₦1,000", label: "Supporter", icon: Heart, color: "amber", desc: "Provides one child with scholastic materials for a week." },
-    { amount: "₦5,000", label: "Advocate", icon: Sparkles, color: "blue", desc: "Funds one medical consultation for an underserved family." },
-    { amount: "₦25,000", label: "Champion", icon: Globe, color: "green", desc: "Sponsors a child's school supplies for an entire term." },
-    { amount: "₦100,000", label: "Foundation Partner", icon: Shield, color: "purple", desc: "Covers a full community outreach event for 50 beneficiaries." },
+    { amount: "₦1,000", label: "Supporter", icon: Heart, color: "amber", desc: "Supports one athlete with training materials." },
+    { amount: "₦5,000", label: "Advocate", icon: Sparkles, color: "blue", desc: "Funds coach certification for one official." },
+    { amount: "₦25,000", label: "Champion", icon: Globe, color: "green", desc: "Sponsors a school cheerleading program." },
+    { amount: "₦100,000", label: "Foundation Partner", icon: Shield, color: "purple", desc: "Covers a full regional competition event." },
 ];
 
 const PAYMENT_METHODS = [
@@ -26,8 +26,8 @@ const PAYMENT_METHODS = [
 ];
 
 const BANK_DETAILS = [
-    { bank: "Actors Charity Foundation", account: "1234567890", name: "First Bank Nigeria" },
-    { bank: "ACF Humanitarian Fund", account: "0987654321", name: "Access Bank" },
+    { bank: "West African Cheer Leaders Group", account: "1234567890", name: "First Bank Nigeria" },
+    { bank: "WAC Development Fund", account: "0987654321", name: "Access Bank" },
 ];
 
 export default function DonatePage() {
@@ -54,28 +54,27 @@ export default function DonatePage() {
 
     return (
         <div className="bg-white text-slate-900">
-            {/* ─── HERO ─── */}
             <section className="relative py-20 md:py-28 bg-slate-950 overflow-hidden text-white">
                 <div className="absolute inset-0 opacity-20">
-                    <Image src={getRandomImage(3)} alt="Donate" fill className="object-cover" unoptimized />
+                    <Image src={getRandomImage(3)} alt="Support WAC" fill className="object-cover" unoptimized />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent" />
                 <div className="max-w-6xl mx-auto px-6 relative z-10">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <motion.div {...fadeIn} className="space-y-6">
-                            <span className="inline-block px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 text-[9px] font-black uppercase tracking-[0.3em] border border-amber-500/20">
+                            <span className="inline-block px-3 py-1 rounded-full bg-[#fab708]/20 text-[#fab708] text-[9px] font-black uppercase tracking-[0.3em] border border-[#fab708]/20">
                                 Make a Difference Today
                             </span>
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-outfit font-bold leading-tight">
-                                Fuel the <span className="text-amber-500 italic">Movement</span>
+                                Support <span className="text-[#fab708]">Cheerleading</span>
                             </h1>
                             <p className="text-white/60 text-base leading-relaxed max-w-lg">
-                                Every naira you donate goes directly to empowering underserved communities through education, healthcare, and advocacy. Together, we write stories that matter.
+                                Your contribution helps develop athletes, train coaches, organize competitions, and build the future of cheerleading across 15 West African nations.
                             </p>
                             <div className="flex flex-wrap gap-4 pt-2">
                                 {[
                                     { label: "100% Transparent", icon: Shield },
-                                    { label: "Tax Deductible", icon: CheckCircle2 },
+                                    { label: "Youth-Focused", icon: CheckCircle2 },
                                     { label: "Secure Payments", icon: CreditCard },
                                 ].map((item, i) => (
                                     <div key={i} className="flex items-center gap-2 text-white/70 text-xs font-medium">
@@ -88,7 +87,7 @@ export default function DonatePage() {
                         <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="grid grid-cols-2 gap-3">
                             {[4, 5, 6, 7].map(seed => (
                                 <div key={seed} className={`relative overflow-hidden rounded-xl ${seed % 2 === 0 ? 'aspect-[3/4]' : 'aspect-square'}`}>
-                                    <Image src={getRandomImage(seed)} alt="ACF Impact" fill className="object-cover" unoptimized />
+                                    <Image src={getRandomImage(seed)} alt="Impact" fill className="object-cover" unoptimized />
                                 </div>
                             ))}
                         </motion.div>
@@ -96,7 +95,6 @@ export default function DonatePage() {
                 </div>
             </section>
 
-            {/* ─── IMPACT TIERS ─── */}
             <section className="py-14 bg-slate-50 border-b border-slate-100">
                 <div className="max-w-6xl mx-auto px-6">
                     <div className="text-center mb-10">
@@ -119,18 +117,15 @@ export default function DonatePage() {
                 </div>
             </section>
 
-            {/* ─── DONATION FORM ─── */}
             <section className="py-14 md:py-20">
                 <div className="max-w-6xl mx-auto px-6">
                     <div className="grid lg:grid-cols-2 gap-12 items-start">
-                        {/* LEFT: form */}
                         <motion.div {...fadeIn} className="space-y-6">
                             <div>
                                 <span className="text-[10px] font-black uppercase tracking-[0.3em] text-amber-600 block mb-2">Contribute Now</span>
                                 <h2 className="text-3xl font-outfit font-bold text-slate-950">Make Your Donation</h2>
                             </div>
 
-                            {/* Donation Type Toggle */}
                             <div className="flex bg-slate-100 rounded-xl p-1">
                                 {(["one-time", "monthly"] as const).map(type => (
                                     <button key={type} onClick={() => setDonationType(type)}
@@ -140,7 +135,6 @@ export default function DonatePage() {
                                 ))}
                             </div>
 
-                            {/* Preset amounts */}
                             <div>
                                 <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Select Amount</p>
                                 <div className="grid grid-cols-3 gap-2">
@@ -153,7 +147,6 @@ export default function DonatePage() {
                                 </div>
                             </div>
 
-                            {/* Custom amount */}
                             <div>
                                 <label className="text-xs font-bold text-slate-500 uppercase tracking-widest block mb-2">Or Enter Custom Amount</label>
                                 <div className="relative">
@@ -165,7 +158,6 @@ export default function DonatePage() {
                                 </div>
                             </div>
 
-                            {/* Payment Method */}
                             <div>
                                 <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Payment Method</p>
                                 <div className="space-y-2">
@@ -182,7 +174,6 @@ export default function DonatePage() {
                                 </div>
                             </div>
 
-                            {/* Bank Transfer Details */}
                             {paymentMethod === "bank" && (
                                 <div className="space-y-3 p-5 bg-slate-50 rounded-2xl border border-slate-100">
                                     <p className="text-xs font-black uppercase tracking-widest text-slate-500 mb-2">Bank Transfer Details</p>
@@ -193,7 +184,7 @@ export default function DonatePage() {
                                             <p className="text-slate-500 text-xs mt-0.5">{b.name}</p>
                                         </div>
                                     ))}
-                                    <p className="text-xs text-slate-400 text-center mt-2">Please use your name + "ACF Donation" as payment reference.</p>
+                                    <p className="text-xs text-slate-400 text-center mt-2">Please use your name + "WAC Support" as payment reference.</p>
                                 </div>
                             )}
 
@@ -223,27 +214,24 @@ export default function DonatePage() {
                             <p className="text-center text-xs text-slate-400">🔒 Secured by SSL encryption. All transactions are fully protected.</p>
                         </motion.div>
 
-                        {/* RIGHT: sidebar */}
                         <div className="space-y-6">
-                            {/* Feature image */}
                             <div className="relative aspect-video rounded-2xl overflow-hidden shadow-xl">
-                                <Image src={getRandomImage(8)} alt="ACF Impact" fill className="object-cover" unoptimized />
+                                <Image src={getRandomImage(8)} alt="Impact" fill className="object-cover" unoptimized />
                                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent" />
                                 <div className="absolute bottom-5 left-5 text-white">
-                                    <p className="font-outfit font-bold text-lg">Your Gift, Their Future</p>
-                                    <p className="text-white/60 text-xs mt-1">Every donation changes a life.</p>
+                                    <p className="font-outfit font-bold text-lg">Your Gift Builds Champions</p>
+                                    <p className="text-white/60 text-xs mt-1">Every donation develops cheerleading in West Africa.</p>
                                 </div>
                             </div>
 
-                            {/* Why donate card */}
                             <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100 space-y-4">
-                                <h3 className="font-outfit font-bold text-slate-950 text-lg">Why Donate to ACF?</h3>
+                                <h3 className="font-outfit font-bold text-slate-950 text-lg">Why Support WAC?</h3>
                                 {[
-                                    "100% of funds go directly to community programs",
+                                    "100% of funds go directly to development programs",
                                     "Regular impact reports sent to all donors",
-                                    "Recognized by Nigeria's Corporate Affairs Commission",
-                                    "Partnership with leading NGOs and hospitals",
-                                    "Transparent financial records available on request",
+                                    "Developing athletes across 15 West African nations",
+                                    "Creating international pathways for cheerleading",
+                                    "Building youth leadership through sport",
                                 ].map((item, i) => (
                                     <div key={i} className="flex items-start gap-3 text-sm text-slate-600">
                                         <CheckCircle2 className="w-4 h-4 text-amber-500 mt-0.5 shrink-0" />
@@ -252,21 +240,19 @@ export default function DonatePage() {
                                 ))}
                             </div>
 
-                            {/* Photo grid */}
                             <div className="grid grid-cols-3 gap-2">
                                 {[9, 10, 11].map(seed => (
                                     <div key={seed} className="relative aspect-square rounded-xl overflow-hidden">
-                                        <Image src={getRandomImage(seed)} alt="ACF" fill className="object-cover hover:scale-110 transition-transform duration-500" unoptimized />
+                                        <Image src={getRandomImage(seed)} alt="WAC" fill className="object-cover hover:scale-110 transition-transform duration-500" unoptimized />
                                     </div>
                                 ))}
                             </div>
 
-                            {/* Contact CTA */}
                             <div className="p-6 bg-slate-950 rounded-2xl text-white text-center space-y-3">
                                 <p className="font-outfit font-bold text-base">Prefer to donate offline?</p>
                                 <p className="text-slate-400 text-xs">Contact our team directly for cheque, wire transfer, or in-kind donations.</p>
                                 <Link href="/contact" className="inline-flex items-center gap-2 text-amber-400 text-xs font-black uppercase tracking-widest hover:text-amber-300 transition-colors">
-                                    Contact ACF <ChevronRight className="w-4 h-4" />
+                                    Contact WAC <ChevronRight className="w-4 h-4" />
                                 </Link>
                             </div>
                         </div>

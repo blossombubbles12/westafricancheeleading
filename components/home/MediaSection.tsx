@@ -22,7 +22,6 @@ export function MediaSection() {
                 const res = await fetch("/api/media/folders");
                 const data = await res.json();
                 const fetchedAlbums = Array.isArray(data) ? data : [];
-                // Take the top 3-4 albums for the homepage
                 setAlbums(fetchedAlbums.slice(0, 4));
             } catch (err) {
                 console.error("Failed to fetch featured media");
@@ -41,9 +40,9 @@ export function MediaSection() {
             <div className="container mx-auto px-4">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
                     <div className="max-w-2xl">
-                        <h2 className="text-[10px] font-black uppercase tracking-[0.5em] text-accent mb-4">Visual Legacy</h2>
+                        <h2 className="text-[10px] font-black uppercase tracking-[0.5em] text-accent mb-4">Visual Archive</h2>
                         <h3 className="text-4xl md:text-6xl font-serif font-bold text-primary leading-tight">
-                            A Journey Through <br /> Our Shared Memories
+                            Cheerleading Across <br /> West Africa
                         </h3>
                     </div>
                     <Link

@@ -110,12 +110,13 @@ export function EditPostModal({ isOpen, onClose, onSave, post, loading = false }
                                     Manage Media ({existingMedia.length})
                                 </label>
                                 <CldUploadWidget 
-                                    uploadPreset="ml_default"
+                                    signatureEndpoint="/api/cloudinary/sign"
                                     onSuccess={handleUploadSuccess}
                                     options={{
                                         sources: ['local', 'url', 'camera', 'google_drive', 'dropbox', 'facebook', 'instagram'],
                                         multiple: true,
-                                        folder: 'acf/posts'
+                                        folder: 'waclg/posts',
+                                        uploadPreset: 'ml_default' // Signed preset
                                     }}
                                 >
                                     {({ open }) => (

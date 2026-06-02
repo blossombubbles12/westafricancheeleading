@@ -29,7 +29,6 @@ export default async function EventsPage() {
 
     return (
         <div className="bg-white min-h-screen">
-            {/* Hero Section */}
             <section className="relative pt-20 pb-12 bg-[#0a1128] text-white">
                 <div className="absolute inset-0 z-0 opacity-20">
                     <Image
@@ -40,21 +39,20 @@ export default async function EventsPage() {
                     />
                 </div>
                 <div className="container mx-auto px-4 relative z-10 text-center">
-                    <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-accent/20 text-accent text-[9px] sm:text-[10px] font-black uppercase tracking-[0.3em] sm:tracking-[0.4em] mb-4 sm:mb-6 border border-accent/20">
-                        ACF Calendar
+                    <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#fab708]/20 text-[#fab708] text-[9px] sm:text-[10px] font-black uppercase tracking-[0.3em] sm:tracking-[0.4em] mb-4 sm:mb-6 border border-[#fab708]/20">
+                        WAC News
                     </span>
-                    <h1 className="text-4xl sm:text-4xl sm:text-5xl md:text-6xl font-serif font-bold mb-4 sm:mb-6 italic leading-tight">Events & <span className="font-light not-italic">Outreach</span></h1>
+                    <h1 className="text-4xl sm:text-4xl sm:text-5xl md:text-6xl font-serif font-bold mb-4 sm:mb-6 italic leading-tight">News & <span className="font-light not-italic">Updates</span></h1>
                     <p className="text-sm sm:text-base md:text-lg text-white/60 max-w-2xl mx-auto font-medium leading-relaxed">
-                        Stay connected with our mission through scheduled advocacy, community meetups, and global events.
+                        Championship results, athlete success stories, training opportunities, and community impact from across West Africa.
                     </p>
                 </div>
             </section>
 
             <div className="container mx-auto px-4 py-12">
-                {/* Upcoming Events Section */}
                 <div className="mb-20">
                     <div className="flex items-center gap-4 mb-12">
-                        <h2 className="text-2xl font-serif font-bold text-gray-900 shrink-0">Upcoming Gatherings</h2>
+                        <h2 className="text-2xl font-serif font-bold text-gray-900 shrink-0">Upcoming Events</h2>
                         <div className="h-px bg-gray-100 w-full" />
                     </div>
 
@@ -72,11 +70,10 @@ export default async function EventsPage() {
                     )}
                 </div>
 
-                {/* Past Events Section */}
                 {pastEvents.length > 0 && (
                     <div>
                         <div className="flex items-center gap-4 mb-12">
-                            <h2 className="text-2xl font-serif font-bold text-gray-400 shrink-0">Past Memories</h2>
+                            <h2 className="text-2xl font-serif font-bold text-gray-400 shrink-0">Past Events</h2>
                             <div className="h-px bg-gray-100 w-full" />
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-700">
@@ -138,7 +135,7 @@ function EventCard({ event, isUpcoming = false }: { event: any, isUpcoming?: boo
                         Details <ArrowRight className="w-3 h-3 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform" />
                     </span>
                     <span className="hidden sm:inline-block text-[10px] font-bold text-gray-300 uppercase tracking-widest">
-                        EST. 2024
+                        WAC
                     </span>
                 </div>
             </div>

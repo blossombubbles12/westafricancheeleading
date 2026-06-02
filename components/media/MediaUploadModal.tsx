@@ -29,7 +29,7 @@ export function MediaUploadModal({ isOpen, onClose, onSuccess, activeFolder }: M
             formData.append("files", file);
         });
 
-        // If activeFolder is null, it goes to root (acf)
+        // If activeFolder is null, it goes to root (waclg)
         formData.append("folder", activeFolder || "");
 
         try {
@@ -63,7 +63,7 @@ export function MediaUploadModal({ isOpen, onClose, onSuccess, activeFolder }: M
                         <h3 className="text-xl font-serif font-bold text-navy">Upload to {activeFolder ? "Album" : "Root Gallery"}</h3>
                         <div className="flex items-center gap-1.5 mt-1">
                             <FolderIcon className="w-3 h-3 text-secondary" />
-                            <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">{activeFolder || "acf"}</p>
+                            <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">{activeFolder || "waclg"}</p>
                         </div>
                     </div>
                     <button onClick={onClose} className="p-2 hover:bg-white rounded-full transition-colors text-gray-400 hover:text-gray-600">

@@ -54,7 +54,7 @@ export async function PUT(
             const result: any = await new Promise((resolve, reject) => {
                 cloudinary.uploader.upload_stream(
                     {
-                        folder: 'acf/events',
+                        folder: 'waclg/events',
                         resource_type: 'auto'
                     },
                     (error, result) => {
@@ -111,7 +111,7 @@ export async function DELETE(
                 // Extract public_id from Cloudinary URL
                 const urlParts = event[0].image_url.split('/');
                 const filename = urlParts[urlParts.length - 1];
-                const publicId = `acf/events/${filename.split('.')[0]}`;
+                const publicId = `waclg/events/${filename.split('.')[0]}`;
                 await cloudinary.uploader.destroy(publicId);
             } catch (err) {
                 console.error('Failed to delete image from Cloudinary:', err);

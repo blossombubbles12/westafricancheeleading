@@ -40,8 +40,8 @@ export function PostsShowcase() {
 
     return (
         <ShowcaseCarousel
-            title="Latest Humanitarian Updates"
-            subtitle="Impact & News"
+            title="News & Updates"
+            subtitle="Stories & Impact"
             items={posts}
             viewAllHref="/news"
             columns={3}
@@ -60,9 +60,9 @@ export function PostsShowcase() {
                         </div>
                         <div className="p-6 flex-grow flex flex-col">
                             <div className="flex items-center gap-2.5 mb-4">
-                                <div className="w-7 h-7 rounded-lg bg-slate-900 flex items-center justify-center text-white text-[9px] font-black">A</div>
+                                <div className="w-7 h-7 rounded-lg bg-slate-900 flex items-center justify-center text-white text-[9px] font-black">W</div>
                                 <div>
-                                    <p className="text-[9px] font-black text-slate-900 uppercase tracking-wider">ACF Admin</p>
+                                    <p className="text-[9px] font-black text-slate-900 uppercase tracking-wider">WAC Admin</p>
                                     <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
                                         {formatDistanceToNow(new Date(post.created_at), { addSuffix: true })}
                                     </p>
@@ -84,4 +84,3 @@ export function PostsShowcase() {
         />
     );
 }
-

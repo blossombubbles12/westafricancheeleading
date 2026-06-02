@@ -20,12 +20,14 @@ const FALLBACK_POOL = [
 ];
 
 export function useCloudinaryPool(folder: string = "", count: number = 10, type: string = "image") {
+    let targetFolder = folder;
+
     const [images, setImages] = useState<string[]>(FALLBACK_POOL);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchPool = async () => {
-            const cacheKey = `${CACHE_KEY_PREFIX}${folder || 'root'}_${type}`;
+            const cacheKey = `${CACHE_KEY_PREFIX}${targetFolder || 'root'}_${type}`;
             // Check session storage first to save API tokens
             try {
                 const cached = sessionStorage.getItem(cacheKey);
@@ -42,8 +44,8 @@ export function useCloudinaryPool(folder: string = "", count: number = 10, type:
             }
 
             try {
-                let endpoint = folder ? `/api/media/featured?folder=${folder}` : `/api/media/featured`;
-                if (type !== 'image') endpoint += (folder ? `&` : `?`) + `type=${type}`;
+                let endpoint = targetFolder ? `/api/media/featured?folder=${targetFolder}` : `/api/media/featured`;
+                if (type !== 'image') endpoint += (targetFolder ? `&` : `?`) + `type=${type}`;
                 const res = await fetch(endpoint);
                 if (!res.ok) throw new Error(`API ${res.status}`);
                 const data = await res.json();

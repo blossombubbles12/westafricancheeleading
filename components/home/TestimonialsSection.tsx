@@ -13,22 +13,22 @@ interface Testimonial {
 
 const TESTIMONIALS: Testimonial[] = [
     {
-        quote: "ACF has given us a platform to convert our influence into measurable humanitarian outcomes. This is what true star power looks like.",
-        name: "Ejike Asiegbu",
-        role: "Executive Director, ACF",
-        initial: "EA",
+        quote: "WAC has given our region a platform to develop cheerleading at every level. We are building champions while empowering the next generation of leaders.",
+        name: "President",
+        role: "Executive Board, WAC",
+        initial: "PR",
     },
     {
-        quote: "The stories we tell on screen are powerful, but the stories we write in communities through ACF are truly transformational.",
-        name: "Zik Zulu Okafor",
-        role: "Board Member, ACF",
-        initial: "ZZ",
+        quote: "Through WAC programs, we've seen young athletes gain confidence, discipline, and teamwork skills that will serve them for life.",
+        name: "Director of Athlete Development",
+        role: "WACLG",
+        initial: "AD",
     },
     {
-        quote: "ACF proves that the entertainment industry can be a force for good — bridging the gap between glamour and grassroots impact.",
-        name: "Mrs. Ogechi Asiegbu",
-        role: "Board Member, ACF",
-        initial: "OA",
+        quote: "The certification programs have transformed how we train coaches across West Africa. This is the future of cheerleading on the continent.",
+        name: "Director of Education",
+        role: "WAC",
+        initial: "ED",
     },
 ];
 
@@ -81,14 +81,12 @@ export function TestimonialsSection() {
                             transition={{ duration: 0.4, ease: "easeInOut" }}
                             className="w-full"
                         >
-                            {/* Stars */}
                             <div className="flex items-center justify-center gap-1 mb-6">
                                 {[...Array(5)].map((_, i) => (
                                     <Star key={i} className="w-4 h-4 text-amber-500 fill-amber-500" />
                                 ))}
                             </div>
 
-                            {/* Quote */}
                             <div className="relative max-w-2xl mx-auto">
                                 <Quote className="w-10 h-10 text-amber-500/20 mx-auto mb-4" />
                                 <blockquote className="text-lg md:text-xl text-slate-700 font-medium leading-relaxed italic">
@@ -96,7 +94,6 @@ export function TestimonialsSection() {
                                 </blockquote>
                             </div>
 
-                            {/* Attribution */}
                             <div className="mt-8 flex flex-col items-center gap-3">
                                 <div className="w-14 h-14 rounded-full bg-slate-950 flex items-center justify-center text-white font-outfit font-bold text-lg">
                                     {testimonial.initial}
@@ -112,7 +109,6 @@ export function TestimonialsSection() {
                     </AnimatePresence>
                 </div>
 
-                {/* Controls */}
                 <div className="flex items-center justify-center gap-6 mt-8">
                     <button
                         onClick={prev}

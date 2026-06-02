@@ -111,12 +111,13 @@ export function CreatePostForm({ onSuccess }: { onSuccess: () => void }) {
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-gray-100">
                     <div className="flex items-center gap-2">
                         <CldUploadWidget 
-                            uploadPreset="ml_default"
+                            signatureEndpoint="/api/cloudinary/sign"
                             onSuccess={handleUploadSuccess}
                             options={{
                                 sources: ['local', 'url', 'camera', 'google_drive', 'dropbox', 'facebook', 'instagram'],
                                 multiple: true,
-                                folder: 'acf/posts'
+                                folder: 'waclg/posts',
+                                uploadPreset: 'ml_default' // This can now be a 'Signed' preset
                             }}
                         >
                             {({ open }) => (

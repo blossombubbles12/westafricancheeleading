@@ -57,7 +57,7 @@ export async function POST(request: Request) {
             const result: any = await new Promise((resolve, reject) => {
                 cloudinary.uploader.upload_stream(
                     {
-                        folder: 'acf/events',
+                        folder: 'waclg/events',
                         resource_type: 'auto'
                     },
                     (error, result) => {

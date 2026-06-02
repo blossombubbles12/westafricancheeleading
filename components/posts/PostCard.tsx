@@ -102,7 +102,7 @@ export function PostCard({ post, onUpdate }: PostProps) {
                         A
                     </div>
                     <div>
-                        <h4 className="font-bold text-gray-900 text-sm sm:text-base leading-tight">ACF Admin</h4>
+                        <h4 className="font-bold text-gray-900 text-sm sm:text-base leading-tight">WAC Admin</h4>
                         <div className="flex items-center gap-2 text-gray-400 text-[9px] sm:text-[10px] font-black uppercase tracking-widest mt-0.5 sm:mt-1">
                             <span>{formatDistanceToNow(new Date(post.created_at), { addSuffix: true })}</span>
                             {isAdmin && (

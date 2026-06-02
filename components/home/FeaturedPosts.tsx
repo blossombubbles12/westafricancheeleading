@@ -14,7 +14,6 @@ export function FeaturedPosts() {
             try {
                 const res = await fetch("/api/posts");
                 const data = await res.json();
-                // Just take the top 2 for the homepage landing
                 setPosts(data.slice(0, 2));
             } catch (err) {
                 console.error("Failed to fetch featured news");
@@ -35,17 +34,17 @@ export function FeaturedPosts() {
                     <div className="max-w-2xl">
                         <h2 className="text-[10px] font-black uppercase tracking-[0.5em] text-accent mb-4 underline decoration-accent/30 underline-offset-8">News & Updates</h2>
                         <h3 className="text-4xl md:text-6xl font-serif font-bold text-primary leading-tight">
-                            Brotherhood in <br /> Motion.
+                            Cheerleading in <br /> Motion.
                         </h3>
                         <p className="mt-6 text-gray-500 font-medium text-lg leading-relaxed">
-                            Stay informed with the latest milestones, reunion stories, and community announcements from our global network.
+                            Stay informed with the latest milestones, competition results, and community announcements from WAC.
                         </p>
                     </div>
                     <Link
                         href="/news"
                         className="group flex items-center gap-3 text-sm font-bold text-primary hover:text-accent transition-all uppercase tracking-[0.2em] border-b-2 border-primary/10 pb-2 mb-2"
                     >
-                        Explore Timeline <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        Explore News <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                 </div>
 

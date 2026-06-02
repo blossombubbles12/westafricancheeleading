@@ -9,7 +9,7 @@ export async function POST(request: Request) {
 
         const formData = await request.formData();
         const files = formData.getAll('files') as File[];
-        const folder = formData.get('folder') as string || ''; // empty means root (acf)
+        const folder = formData.get('folder') as string || ''; // empty means root (waclg)
 
         if (files.length === 0) {
             return NextResponse.json({ error: 'No files provided' }, { status: 400 });
@@ -39,7 +39,7 @@ export async function POST(request: Request) {
             const arrayBuffer = await file.arrayBuffer();
             const buffer = Buffer.from(arrayBuffer);
 
-            const rootBasePath = formData.get('root') as string || 'acf';
+            const rootBasePath = formData.get('root') as string || 'waclg';
             const uploadPath = folder ? `${rootBasePath}/${folder}` : rootBasePath;
 
             return new Promise((resolve, reject) => {
@@ -75,7 +75,7 @@ export async function GET(request: Request) {
     try {
         const { searchParams } = new URL(request.url);
         const folder = searchParams.get('folder') || ''; // Default to root
-        const root = searchParams.get('root') || 'acf';
+        const root = searchParams.get('root') || 'waclg';
         const excludeSystem = searchParams.get('exclude_system') === 'true';
 
         let expression = '';
@@ -83,9 +83,9 @@ export async function GET(request: Request) {
             expression = `folder:"${root}/${folder}"`;
         } else {
             if (excludeSystem) {
-                const systemFolders = ['admins', 'events', 'profiles', 'slider', 'home', 'about'];
-                const exclusions = systemFolders.map(f => `-folder:"${root}/${f}/*"`).join(' AND ');
-                expression = `folder:"${root}/*" AND ${exclusions}`;
+                const systemFolders = ['admins', 'events', 'profiles', 'slider', 'sliders', 'home', 'about', 'wac/slider', 'wac/sliders'];
+                const exclusions = systemFolders.map(f => `-folder:"${root}/${f}/*"`).join(' ');
+                expression = `folder:"${root}/*" ${exclusions}`;
             } else {
                 expression = `folder:"${root}/*"`;
             }

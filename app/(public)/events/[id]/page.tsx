@@ -3,16 +3,8 @@ import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 import {
-    Calendar,
-    MapPin,
-    Clock,
-    ArrowLeft,
-    Share2,
-    Bell,
-    CalendarPlus,
-    ChevronRight,
-    Video,
-    Users
+    Calendar, MapPin, Clock, ArrowLeft, Share2, Bell,
+    CalendarPlus, ChevronRight, Video, Users
 } from "lucide-react";
 import { notFound } from "next/navigation";
 import { getEventFallbackImage } from "@/lib/media";
@@ -44,13 +36,11 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ i
 
     return (
         <div className="bg-white min-h-screen">
-            {/* Background Blur Effect */}
             <div className="fixed inset-0 pointer-events-none overflow-hidden opacity-30">
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] -mr-64 -mt-64" />
                 <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[120px] -ml-64 -mb-64" />
             </div>
 
-            {/* Mobile/App style Header */}
             <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-50 flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 md:px-12">
                 <Link
                     href="/events"
@@ -73,7 +63,6 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ i
                 <div className="max-w-6xl mx-auto">
                     <div className="grid lg:grid-cols-12 gap-6 md:gap-8 lg:gap-10">
 
-                        {/* Left Column: Visuals */}
                         <div className="lg:col-span-7 space-y-8 sm:space-y-10">
                             <div className="relative aspect-[4/3] sm:aspect-[16/10] rounded-[2rem] sm:rounded-[3rem] overflow-hidden shadow-2xl bg-slate-100 group">
                                 <Image
@@ -97,11 +86,10 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ i
                             </div>
                         </div>
 
-                        {/* Right Column: Key Details & Actions */}
                         <div className="lg:col-span-5 space-y-6 sm:space-y-8">
                             <div className="space-y-4 sm:space-y-6">
                                 <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-primary/5 text-primary text-[9px] sm:text-[10px] font-black uppercase tracking-[0.3em] sm:tracking-[0.4em] border border-primary/10">
-                                    Official Gathering
+                                    WAC Event
                                 </span>
                                 <h1 className="text-3xl sm:text-3xl md:text-5xl font-serif font-bold text-gray-900 leading-tight italic">
                                     {event.title}
@@ -142,7 +130,7 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ i
                                         </div>
                                         <div>
                                             <p className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-gray-400 mb-0.5 sm:mb-1">Attendance</p>
-                                            <p className="text-base sm:text-lg font-bold text-gray-900">ACF Partners & Invited Guests</p>
+                                            <p className="text-base sm:text-lg font-bold text-gray-900">WAC Members & Invited Guests</p>
                                         </div>
                                     </div>
                                 </div>
@@ -161,11 +149,11 @@ export default async function EventDetailsPage({ params }: { params: Promise<{ i
                                 <div className="relative z-10 space-y-4">
                                     <h4 className="text-xl font-serif font-bold italic">Need Assistance?</h4>
                                     <p className="text-white/50 text-sm font-medium leading-relaxed">
-                                        If you have questions regarding logistics, accommodation, or transportation for this event, please contact the ACF coordination team.
+                                        If you have questions regarding logistics, accommodation, or transportation for this event, please contact the WAC coordination team.
                                     </p>
-                                    <button className="text-secondary text-xs font-black uppercase tracking-[0.2em] flex items-center gap-2 pt-2 hover:translate-x-1 transition-transform">
-                                        Contact Secretariat <ChevronRight className="w-4 h-4" />
-                                    </button>
+                                    <Link href="/contact" className="text-secondary text-xs font-black uppercase tracking-[0.2em] flex items-center gap-2 pt-2 hover:translate-x-1 transition-transform">
+                                        Contact WAC <ChevronRight className="w-4 h-4" />
+                                    </Link>
                                 </div>
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-secondary opacity-10 rounded-full blur-2xl -mr-16 -mt-16" />
                             </div>
