@@ -1,8 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Users, Calendar, ClipboardList, Megaphone, Camera, Heart, Globe, ArrowRight, Handshake, Sparkles } from "lucide-react";
+import { Users, Calendar, ClipboardList, Megaphone, Camera, Heart, Globe, ArrowRight, Handshake, Sparkles, CheckCircle2, Loader2, Send } from "lucide-react";
 import { motion } from "framer-motion";
 import { useCloudinaryPool } from "@/hooks/useCloudinaryPool";
 
@@ -19,12 +20,69 @@ const OPPORTUNITIES = [
 
 export default function VolunteerPage() {
   const { getRandomImage } = useCloudinaryPool();
+  const [form, setForm] = useState({ full_name: "", email: "", phone: "", location: "", skills: "", availability: "" });
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
     transition: { duration: 0.5 }
   };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    if (!form.full_name.trim() || !form.email.trim()) {
+      setError("Name and email are required.");
+      return;
+    }
+    setLoading(true);
+    try {
+      const res = await fetch("/api/volunteers", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          full_name: form.full_name.trim(),
+          email: form.email.trim(),
+          phone: form.phone.trim() || null,
+          location: form.location.trim() || null,
+          skills: form.skills.trim() || null,
+          availability: form.availability.trim() || null,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) { setError(data.error || "Submission failed."); return; }
+      setSubmitted(true);
+    } catch {
+      setError("Network error. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (submitted) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center px-4">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-lg w-full text-center">
+          <div className="w-20 h-20 bg-[#096b38]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <CheckCircle2 className="w-10 h-10 text-[#096b38]" />
+          </div>
+          <h1 className="text-3xl md:text-4xl font-outfit font-bold text-[#0a1628] mb-3">Application Received!</h1>
+          <p className="text-gray-500 text-sm mb-8 max-w-md mx-auto leading-relaxed">
+            Thank you for your interest in volunteering with WAC. We will review your application and reach out at <strong className="text-[#096b38]">{form.email}</strong>.
+          </p>
+          <Link href="/" className="px-6 py-3 bg-[#096b38] text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-[#07582e] transition-all">Return Home</Link>
+        </motion.div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white min-h-screen">
@@ -68,19 +126,49 @@ export default function VolunteerPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-gray-50 text-center">
-        <div className="max-w-2xl mx-auto px-6 space-y-5">
-          <Handshake className="w-12 h-12 text-[#096b38] mx-auto" />
-          <h2 className="text-3xl font-outfit font-bold text-[#0a1628]">Join Our Team</h2>
-          <p className="text-gray-500 text-sm leading-relaxed">Express your interest in volunteering with WAC. We will reach out as opportunities become available.</p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/contact" className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#096b38] text-white rounded-xl font-black uppercase tracking-widest text-[10px] hover:bg-[#07582e] transition-all shadow-xl">
-              Get Involved <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link href="/membership" className="inline-flex items-center gap-2 px-8 py-3.5 border-2 border-[#096b38] text-[#096b38] rounded-xl font-black uppercase tracking-widest text-[10px] hover:bg-[#096b38] hover:text-white transition-all">
-              Become a Member
-            </Link>
+      <section id="volunteer-form" className="py-16 bg-gray-50">
+        <div className="max-w-2xl mx-auto px-4">
+          <div className="text-center mb-10">
+            <Handshake className="w-12 h-12 text-[#096b38] mx-auto mb-4" />
+            <h2 className="text-3xl font-outfit font-bold text-[#0a1628]">Apply Now</h2>
+            <p className="text-gray-500 text-sm mt-2">Fill in your details and we will get back to you.</p>
           </div>
+          {error && (
+            <div className="mb-6 p-4 bg-red-50 border border-red-100 rounded-xl text-red-600 text-sm font-bold flex items-center gap-2">
+              <span className="w-1.5 h-1.5 bg-red-600 rounded-full" /> {error}
+            </div>
+          )}
+          <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-gray-100 p-6 md:p-8 space-y-5 shadow-sm">
+            <div className="grid sm:grid-cols-2 gap-5">
+              <div className="sm:col-span-2">
+                <label className="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1.5">Full Name *</label>
+                <input name="full_name" value={form.full_name} onChange={handleChange} required placeholder="Your full name" className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-[#0a1628] placeholder:text-gray-300 focus:outline-none focus:border-[#096b38] focus:ring-2 focus:ring-[#096b38]/10 transition-all font-bold" />
+              </div>
+              <div>
+                <label className="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1.5">Email *</label>
+                <input name="email" type="email" value={form.email} onChange={handleChange} required placeholder="you@example.com" className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-[#0a1628] placeholder:text-gray-300 focus:outline-none focus:border-[#096b38] focus:ring-2 focus:ring-[#096b38]/10 transition-all font-bold" />
+              </div>
+              <div>
+                <label className="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1.5">Phone</label>
+                <input name="phone" type="tel" value={form.phone} onChange={handleChange} placeholder="+234 800 000 0000" className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-[#0a1628] placeholder:text-gray-300 focus:outline-none focus:border-[#096b38] focus:ring-2 focus:ring-[#096b38]/10 transition-all font-bold" />
+              </div>
+              <div>
+                <label className="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1.5">Location</label>
+                <input name="location" value={form.location} onChange={handleChange} placeholder="City, Country" className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-[#0a1628] placeholder:text-gray-300 focus:outline-none focus:border-[#096b38] focus:ring-2 focus:ring-[#096b38]/10 transition-all font-bold" />
+              </div>
+            </div>
+            <div>
+              <label className="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1.5">Skills & Experience</label>
+              <textarea name="skills" value={form.skills} onChange={handleChange} rows={3} placeholder="Relevant skills, experience, or qualifications..." className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-[#0a1628] placeholder:text-gray-300 focus:outline-none focus:border-[#096b38] focus:ring-2 focus:ring-[#096b38]/10 transition-all font-bold resize-none" />
+            </div>
+            <div>
+              <label className="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1.5">Availability</label>
+              <input name="availability" value={form.availability} onChange={handleChange} placeholder="e.g. Weekends, Evenings, Full-time, Event-based" className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-[#0a1628] placeholder:text-gray-300 focus:outline-none focus:border-[#096b38] focus:ring-2 focus:ring-[#096b38]/10 transition-all font-bold" />
+            </div>
+            <button type="submit" disabled={loading} className="w-full py-3.5 bg-[#096b38] text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-[#07582e] transition-all shadow-lg shadow-[#096b38]/20 active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2">
+              {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Submitting...</> : <><Send className="w-4 h-4" /> Submit Application</>}
+            </button>
+          </form>
         </div>
       </section>
     </div>
