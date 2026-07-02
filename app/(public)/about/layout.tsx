@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { AboutSubNav } from "@/components/about/AboutSubNav";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -11,5 +10,5 @@ export const metadata: Metadata = {
 };
 
 export default function AboutLayout({ children }: { children: React.ReactNode }) {
-  return <><AboutSubNav />{children}</>;
+  return <>{children}</>;
 }
