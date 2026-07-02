@@ -11,7 +11,8 @@ import { useCloudinaryPool } from "@/hooks/useCloudinaryPool";
 import { PartnersScroller } from "@/components/ui/PartnersScroller";
 
 export default function AboutPage() {
-    const { getRandomImage } = useCloudinaryPool('about');
+    const { getRandomImage } = useCloudinaryPool('uploads');
+    const { getRandomImage: getSliderImage } = useCloudinaryPool('sliders');
     const fadeIn = {
         initial: { opacity: 0, y: 20 },
         whileInView: { opacity: 1, y: 0 },
@@ -55,7 +56,7 @@ export default function AboutPage() {
 
             <section className="relative py-20 md:py-28 bg-[#0a1628] text-white overflow-hidden">
                 <div className="absolute inset-0 z-0 opacity-25">
-                    <Image src={getRandomImage(1)} alt="WAC" fill className="object-cover" unoptimized />
+                    <Image src={getSliderImage(0)} alt="WAC" fill className="object-cover" unoptimized />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-r from-[#0a1628] via-[#0a1628]/80 to-transparent z-[1]" />
                 <div className="container mx-auto px-6 relative z-10">
@@ -289,7 +290,7 @@ export default function AboutPage() {
 
             <section className="py-14 md:py-20 relative overflow-hidden bg-[#0a1628] text-white">
                 <div className="absolute inset-0">
-                    <Image src={getRandomImage(4)} alt="CTA" fill className="object-cover opacity-10" unoptimized />
+                    <Image src={getSliderImage(1)} alt="CTA" fill className="object-cover opacity-10" unoptimized />
                 </div>
                 <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
                     <div className="flex justify-center mb-4">

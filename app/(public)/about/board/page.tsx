@@ -18,7 +18,8 @@ const EXECUTIVE_BOARD = [
 ];
 
 export default function BoardMembersPage() {
-    const { getRandomImage } = useCloudinaryPool('about');
+    const { getRandomImage } = useCloudinaryPool('uploads');
+    const { getRandomImage: getSliderImage } = useCloudinaryPool('sliders');
 
     const fadeIn = {
         initial: { opacity: 0, y: 20 },
@@ -31,7 +32,7 @@ export default function BoardMembersPage() {
         <div className="bg-white">
             <section className="relative py-16 md:py-20 bg-[#0a1628] text-white overflow-hidden">
                 <div className="absolute inset-0 opacity-20">
-                    <Image src={getRandomImage(2)} alt="Leadership" fill className="object-cover" unoptimized />
+                    <Image src={getSliderImage(0)} alt="Leadership" fill className="object-cover" unoptimized />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-r from-[#0a1628] to-[#0a1628]/60" />
                 <div className="max-w-6xl mx-auto px-6 relative z-10">

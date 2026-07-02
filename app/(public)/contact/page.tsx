@@ -18,7 +18,8 @@ const SUBJECTS = [
 ];
 
 export default function ContactPage() {
-    const { getRandomImage } = useCloudinaryPool('about');
+    const { getRandomImage } = useCloudinaryPool('uploads');
+    const { getRandomImage: getSliderImage } = useCloudinaryPool('sliders');
     const [submitted, setSubmitted] = useState(false);
     const [form, setForm] = useState({ firstName: "", lastName: "", email: "", phone: "", subject: "", message: "" });
 
@@ -33,7 +34,7 @@ export default function ContactPage() {
         <div className="bg-white">
             <section className="relative py-20 md:py-28 bg-[#0a1628] text-white overflow-hidden">
                 <div className="absolute inset-0 opacity-20">
-                    <Image src={getRandomImage(1)} alt="Contact WAC" fill className="object-cover" unoptimized />
+                    <Image src={getSliderImage(0)} alt="Contact WAC" fill className="object-cover" unoptimized />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-br from-[#0a1628] via-[#0a1628]/80 to-transparent" />
                 <div className="max-w-6xl mx-auto px-6 relative z-10 text-center">
@@ -153,7 +154,7 @@ export default function ContactPage() {
 
                         <div className="space-y-6">
                             <div className="relative aspect-video rounded-2xl overflow-hidden shadow-xl">
-                                <Image src={getRandomImage(3)} alt="WAC" fill className="object-cover" unoptimized />
+                                <Image src={getSliderImage(1)} alt="WAC" fill className="object-cover" unoptimized />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a1628]/60 to-transparent" />
                                 <div className="absolute bottom-5 left-5 text-white">
                                     <p className="font-outfit font-bold text-lg">We&apos;re Here to Help</p>
@@ -183,7 +184,7 @@ export default function ContactPage() {
                             <div className="grid grid-cols-3 gap-2">
                                 {[4, 5, 6].map(seed => (
                                     <div key={seed} className="relative aspect-square rounded-xl overflow-hidden">
-                                        <Image src={getRandomImage(seed)} alt="WAC" fill className="object-cover hover:scale-110 transition-transform duration-500" unoptimized />
+                                        <Image src={getSliderImage(seed)} alt="WAC" fill className="object-cover hover:scale-110 transition-transform duration-500" unoptimized />
                                     </div>
                                 ))}
                             </div>
